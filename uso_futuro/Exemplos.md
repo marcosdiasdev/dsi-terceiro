@@ -147,3 +147,56 @@ fetch()	Retorna a próxima linha do resultado.
 fetchAll()	Retorna um array com todos os resultados.
 fetchObject()	Retorna a próxima linha do resultado como objeto.
 fetchColumn()	Retorna uma coluna da próxima linha do resultado.
+
+## Uso da classe Aluno
+
+```
+$aluno = new Aluno();
+
+//$aluno->setId(2);
+$aluno->setCpf("65412378988");
+$aluno->setRg("123456789112");
+$aluno->setNome("Chuck Norris");
+$aluno->setMatricula("20160507081");
+$aluno->setNascimento("1958-01-01");
+$aluno->setTelefone("551188990011");
+$aluno->setEndereco("Times Square");
+$aluno->setObservacao("");
+$aluno->setDataCadastro(date("Y-m-d H:i:s"));
+
+$alunoDAO->inserir($aluno);
+//$alunoDAO->atualizar($aluno);
+//$alunoDAO->apagar($aluno);
+$alunos = $alunoDAO->listarTodos();
+
+if(isset($_POST['cpf'])) {
+    
+    try{
+        $aluno = new Aluno();
+        
+        $aluno->setCpf($_POST['cpf']);
+        $aluno->setRg($_POST['rg']);
+        $aluno->setNome($_POST['nome']);
+        $aluno->setMatricula($_POST['matricula']);
+        $aluno->setNascimento($_POST['nascimento']);
+        $aluno->setTelefone($_POST['telefone']);
+        $aluno->setEndereco($_POST['endereco']);
+        $aluno->setObservacao($_POST['observacao']);
+        $aluno->setDataCadastro(date("Y-m-d H:i:s"));
+        
+        $alunoDAO->inserir($aluno);
+    } catch(Exception $e) {
+        echo $e->getMessage();
+    }     
+}
+```
+
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+
+RewriteRule ^(.*) /index.html [NC,L]
+RewriteRule ^ index.php [QSA,L]

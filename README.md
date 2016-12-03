@@ -4,16 +4,16 @@ O arquivo responsável pela inicialização do nosso sistema. É a partir dele q
 
 # Banco.php
 
-Classe abstrata responsável apenas pela configuração e instanciação do objeto de conexão ao banco de dados. Uma classe abstrata não pode ser instanciada. Desta forma, não podemos criar um objeto a partir da classe banco, como geralmente fazíamos:
+Classe responsável apenas pela instanciação do objeto de conexão ao banco de dados. O construtor desta classe é protegido para que ela não pode ser instanciada de fora de seu escopo. Desta forma, não podemos criar um objeto a partir da classe banco, como geralmente fazíamos:
 
 ```
 $banco = new Banco();
 ```
 
-Por utilizarmos a classe PDO para conexão ao banco de dados, a classe Banco servirá apenas para nos entregar um objeto da classe PDO instanciado através do método estático `getInstance()`. A partir de agora, sempre que precisarmos de uma conexão, faremos o seguinte:
+Por utilizarmos a classe PDO para conexão ao banco de dados, a classe Banco servirá apenas para nos entregar um objeto da classe PDO instanciado através do método estático `getConexao()`. A partir de agora, sempre que precisarmos de uma conexão, faremos o seguinte:
 
 ```
-$con = Banco::getInstance()
+$con = Banco::getConexao()
 ```
 
 # AlunoDAO.php
@@ -21,8 +21,6 @@ $con = Banco::getInstance()
 Classe responsável pelo acesso a dados referentes à classe Aluno. O DAO representa Data Access Object, o mesmo que Objeto de Acesso a Dados.
 
 Assim como a classe Aluno, toda classe que represente uma entidade do banco de dados, deverá ter uma classe DAO referente.
-
-Observe que o método `listar()` é estático por não se referir a um comportamento específico de um único objeto. Quando falamos em 'listar alunos' falamos de listar vários alunos. 
 
 # Aluno.php
 
@@ -34,7 +32,7 @@ Percebam que agora todos os atributos da classe estão com acesso privado, como 
 $cpf = $umAlunoQualquer->getCpf();
 ```
 
-Caso precise modificar o valor de algum atributo, será necessário, a partir deste momento, declarar um método 'setter':
+Caso precise modificar o valor de algum atributo, será necessário, a partir deste momento, invocar seu método 'setter':
 
 ```
 $umAlunoQualquer->setCpf("00011122233");

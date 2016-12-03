@@ -1,18 +1,37 @@
-<meta charset="utf-8">
 <?php
+    header("Content-type: text/html; charset=utf-8"); 
 
-    include_once 'AlunoDAO.php';
-   
-    $aluno = new Aluno("65412378988","123456789112","Chuck Norris",
-            "20160507081", "1958-01-01", "551188990011", "Times Square");
+    // Carregamento do autoload e do arquivo de configurações
+    require __DIR__.'/vendor/autoload.php';
+    require __DIR__.'/config.php';
 
-    $alunoDAO = new AlunoDAO();
-    $alunoDAO->inserir($aluno);
-    
-    $alunos = AlunoDAO::listar();
+    // Instanciação do AltoRouter
+    $router = new AltoRouter();
+    $router->setBasePath('/dsi-terceiro');
 
-    foreach($alunos as $aluno) {
-        echo $aluno->nome . "<br>";
+    // Mapeamento de rotas
+    $router->map('GET', '/', '\App\HomeController#index', 'home');
+    $router->map('GET', '/aluno', '\App\AlunoController#listarTodos', 'alunos');
+    $router->map('GET', '/aluno/[*:id]/*', '\App\AlunoController#listar', 'aluno');
+
+    // Verificação e tratamento de correspondência de rotas
+    $match = $router->match();
+    if ($match === false) 
+    {
+        header($_SERVER['SERVER_PROTOCOL'] . ' 404 Não Encontrado', true, 404);
     }
+    else
+    {
+        list($controlador, $metodo) = explode( '#', $match['target'] );
 
+        if ( is_callable(array($controlador, $metodo)) ) 
+        {
+            $obj = new $controlador();
+            call_user_func_array(array($obj,$metodo), array($match['params']));
+        }
+        else 
+        {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 505 Erro Interno', true, 505);
+        }
+    }
 ?>

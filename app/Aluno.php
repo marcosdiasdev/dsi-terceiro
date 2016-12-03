@@ -1,6 +1,9 @@
 <?php
+namespace App;
+
 class Aluno {
 
+    // Atributos
     private $id;
     private $cpf;
     private $rg;
@@ -12,18 +15,10 @@ class Aluno {
     private $observacao;
     private $data_cadastro;
 
-    public function __construct($cpf, $rg, $nome, $matricula, $nascimento, $telefone, $endereco) {
-        $this->cpf = $cpf;
-        $this->rg = $rg;
-        $this->nome = $nome;
-        $this->matricula = $matricula;
-        $this->nascimento = $nascimento;
-        $this->telefone = $telefone;
-        $this->endereco = $endereco;
-        $this->observacao = "";
-        $this->data_cadastro = date("Y-m-d H:i:s");
-    }
+    // Construtor
+    public function __construct() { }
 
+    // Getters
     public function getId() {
         return $this->id;
     }
@@ -54,5 +49,37 @@ class Aluno {
     public function getDataCadastro() {
         return $this->data_cadastro;
     }
+
+    // Setters
+    public function setId($id) {
+        $this->id = $id;
+    }
+    public function setCpf($cpf) {
+        $this->cpf = $cpf;
+    }
+    public function setRg($rg) {
+        $this->rg = $rg;
+    }    
+    public function setNome($nome) {
+        $this->nome = $nome;
+    }
+    public function setMatricula($matricula) {
+        $this->matricula = $matricula;
+    }
+    public function setNascimento($nascimento) {
+        $this->nascimento = $nascimento;
+    }
+    public function setTelefone($telefone) {
+        $this->telefone = $telefone;
+    }
+    public function setEndereco($endereco) {
+        $this->endereco = $endereco;
+    }
+    public function setObservacao($observacao) {
+        $this->observacao = $observacao;
+    }
+    public function setDataCadastro($data_cadastro) {
+        $this->data_cadastro = $data_cadastro;
+    }    
 }
 ?>
