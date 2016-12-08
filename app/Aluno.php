@@ -1,22 +1,19 @@
 <?php
 namespace App;
 
-class Aluno {
+class Aluno extends Model {
 
     // Atributos
-    private $id;
-    private $cpf;
-    private $rg;
-    private $nome;
-    private $matricula;
-    private $nascimento;
-    private $telefone;
-    private $endereco;
-    private $observacao;
+    public $id;
+    public $cpf;
+    public $rg;
+    public $nome;
+    public $matricula;
+    public $nascimento;
+    public $telefone;
+    public $endereco;
+    public $observacao;
     private $data_cadastro;
-
-    // Construtor
-    public function __construct() { }
 
     // Getters
     public function getId() {

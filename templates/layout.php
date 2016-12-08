@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,8 +7,8 @@
 
     <title><?=$this->e($titulo)?></title>
 
-    <link href="<?=HOME?>/assets/font-awesome/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
     <link href="<?=HOME?>/assets/bootstrap/css/app.css" rel="stylesheet">
+    <link href="<?=HOME?>/assets/font-awesome/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
     <link href="<?=HOME?>/assets/css/style.css" rel="stylesheet">
 </head>
 <body id="app-layout">
@@ -32,11 +32,13 @@
 
                 <!-- Esquerda da Barra de Navegação -->
                 <ul class="nav navbar-nav">
-                    <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                    role="button" aria-haspopup="true" aria-expanded="false">Aluno<span class="caret"></span></a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Aluno<span class="caret"></span>
+                        </a>
                         <ul class="dropdown-menu">
                             <li><a href="<?=HOME?>/aluno">Listar</a></li>
-                            <li><a href="#">Cadastrar</a></li>
+                            <li><a href="<?=HOME?>/aluno/cadastrar">Cadastrar</a></li>
                         </ul>
                     </li>
                 </ul>
